@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for markdown content */
+.markdown-content h2 {
+  @apply text-xl font-semibold text-blue-700 mt-4 mb-2;
+}
+
+.markdown-content h3 {
+  @apply text-lg font-medium text-blue-600 mt-3 mb-2;
+}
+
+.markdown-content p {
+  @apply my-2;
+}
+
+.markdown-content ul {
+  @apply list-disc pl-5 my-2;
+}
+
+.markdown-content li {
+  @apply mb-1;
+}
+
+.markdown-content a {
+  @apply text-blue-600 hover:text-blue-800 underline;
+}
