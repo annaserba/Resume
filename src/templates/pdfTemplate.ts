@@ -20,7 +20,7 @@ export function getPdfTemplate({header, oneColumnContent, twoColumnContent, foot
         /* Базовые стили */
         body {
           font-family: 'Arial', sans-serif;
-          font-size: 12px; /* Еще больше уменьшенный размер шрифта */
+          font-size: 11px; /* Еще больше уменьшенный размер шрифта */
           line-height: 1.4;
           color: #333;
           max-width: 800px;
@@ -31,14 +31,14 @@ export function getPdfTemplate({header, oneColumnContent, twoColumnContent, foot
         /* Заголовки в стиле Tailwind */
         h1 {
           color: #000000; /* Черный цвет */
-          font-size: 1.2rem; /* Еще больше уменьшенный размер */
+          font-size: 1.1rem; /* Еще больше уменьшенный размер */
           font-weight: 700; /* font-bold */
           margin-bottom: 0.4rem;
         }
         
         h2 {
           color: #000000; /* Черный цвет */
-          font-size: 0.9rem; /* Еще больше уменьшенный размер */
+          font-size: 0.85rem; /* Еще больше уменьшенный размер */
           font-weight: 600; /* font-semibold */
           margin-top: 0.8rem;
           margin-bottom: 0.4rem;
@@ -48,7 +48,7 @@ export function getPdfTemplate({header, oneColumnContent, twoColumnContent, foot
         
         h3 {
           color: #000000; /* Черный цвет */
-          font-size: 0.85rem; /* Еще больше уменьшенный размер */
+          font-size: 0.8rem; /* Еще больше уменьшенный размер */
           font-weight: 500; /* font-medium */
           margin-top: 0.6rem;
           margin-bottom: 0.4rem;
@@ -57,7 +57,7 @@ export function getPdfTemplate({header, oneColumnContent, twoColumnContent, foot
         /* Текстовые элементы */
         p {
           margin: 0.4rem 0; /* Уменьшенные отступы */
-          font-size: 0.8rem; /* Еще больше уменьшенный размер */
+          font-size: 0.75rem; /* Еще больше уменьшенный размер */
         }
         
         /* Списки */
@@ -69,7 +69,7 @@ export function getPdfTemplate({header, oneColumnContent, twoColumnContent, foot
         
         li {
           margin-bottom: 0.2rem; /* Уменьшенный отступ */
-          font-size: 0.8rem; /* Еще больше уменьшенный размер */
+          font-size: 0.75rem; /* Еще больше уменьшенный размер */
         }
         
         /* Ссылки */
@@ -174,15 +174,15 @@ export function getPdfTemplate({header, oneColumnContent, twoColumnContent, foot
         }
         
         .main-column {
-          width: 70%;
+          width: 67%;
           padding-right: 20px;
         }
         
         .side-column {
-          width: 30%;
+          width: 33%;
           padding-left: 10px;
           border-left: 1px solid #e5e7eb;
-          font-size: 0.7rem; /* Еще меньше шрифт для правой колонки */
+          font-size: 0.75rem; /* Такой же размер шрифта, как в левой колонке */
           line-height: 1.3;
         }
         
@@ -198,7 +198,7 @@ export function getPdfTemplate({header, oneColumnContent, twoColumnContent, foot
         }
         
         .skills-container h2 {
-          font-size: 0.7rem;
+          font-size: 0.75rem;
           margin-top: 0.8rem; /* Увеличенный отступ между категориями навыков */
           margin-bottom: 0.3rem;
           border-bottom: none;
@@ -210,7 +210,7 @@ export function getPdfTemplate({header, oneColumnContent, twoColumnContent, foot
         }
         
         .skills-container li {
-          font-size: 0.65rem;
+          font-size: 0.75rem;
           margin-bottom: 0.1rem;
           line-height: 1.2;
         }
@@ -223,13 +223,13 @@ export function getPdfTemplate({header, oneColumnContent, twoColumnContent, foot
         }
         
         .side-column h3 {
-          font-size: 0.7rem;
+          font-size: 0.75rem;
           margin-top: 0.3rem;
           margin-bottom: 0.2rem;
         }
         
         .side-column p {
-          font-size: 0.65rem;
+          font-size: 0.75rem;
           margin: 0.2rem 0;
         }
         
@@ -239,7 +239,7 @@ export function getPdfTemplate({header, oneColumnContent, twoColumnContent, foot
         }
         
         .side-column li {
-          font-size: 0.65rem;
+          font-size: 0.75rem;
           margin-bottom: 0.1rem;
         }
     

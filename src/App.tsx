@@ -37,7 +37,7 @@ const App = () => {
       <header className="bg-white shadow-md sticky top-0 z-10">
         <div className="container mx-auto p-4 md:px-8">
           <div className="flex justify-between items-center">
-            <Contacts language={language} color="white" />
+            <Contacts color="white" t={t} />
             <div className="flex items-center gap-4">
               <a 
                 href={`/resume_${language}.pdf`} 
@@ -57,71 +57,56 @@ const App = () => {
         </div>
       </header>
       
-      <main className="container mx-auto py-8 px-4 md:px-8">
-        {/* About section - full width */}
-        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-          <h2 className="text-2xl font-bold mb-4 text-blue-700 border-b border-blue-300 pb-2">
-            {t.about}
-          </h2>
-          <div className="prose max-w-none">
-            <MarkdownViewer section="about" language={language} />
-          </div>
-        </div>
+      <main className="container mx-auto p-4 md:px-8 mt-8">
+        <div className="flex flex-col md:flex-row gap-8 bg-white rounded-lg shadow-lg p-6">
+          {/* Левая колонка - основной контент (70%) */}
+          <div className="md:w-[70%] space-y-8">
+            <section id="about">
+              <h2 className="text-2xl font-semibold border-b border-gray-300 pb-2 mb-4">
+                {t.about}
+              </h2>
+              <MarkdownViewer section="about" language={language} />
+            </section>
 
-        {/* Education and Certificates in one row */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          {/* Education section */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h2 className="text-2xl font-bold mb-4 text-blue-700 border-b border-blue-300 pb-2">
-              {t.education}
-            </h2>
-            <div className="prose max-w-none">
-              <MarkdownViewer section="education" language={language} />
-            </div>
-          </div>
-
-          {/* Certificates section */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h2 className="text-2xl font-bold mb-4 text-blue-700 border-b border-blue-300 pb-2">
-              {t.certificates}
-            </h2>
-            <div className="prose max-w-none">
-              <MarkdownViewer section="certificates" language={language} />
-            </div>
-          </div>
-        </div>
-
-        {/* Grid layout for smaller sections */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          {/* Projects section */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <section id="projects">
-              <h2 className="text-2xl font-bold text-blue-800 mb-4">{t.projects}</h2>
-              <div className="prose max-w-none">
-                <MarkdownViewer section="projects" language={language} />
-              </div>
+            <section id="experience">
+              <h2 className="text-2xl font-semibold border-b border-gray-300 pb-2 mb-4">
+                {t.experience}
+              </h2>
+              <MarkdownViewer section="experience" language={language} />
             </section>
           </div>
 
-          {/* Skills section */}
-          <div className="bg-white rounded-lg shadow-md p-6">
+          {/* Правая колонка - навыки и дополнительная информация (30%) */}
+          <div className="md:w-[30%] space-y-8 md:border-l md:border-gray-300 md:pl-6">
             <section id="skills">
-              <h2 className="text-2xl font-bold text-blue-800 mb-4">{t.skills}</h2>
+              <h2 className="text-2xl font-semibold border-b border-gray-300 pb-2 mb-4">
+                {t.skills}
+              </h2>
               <SkillsViewer language={language} />
             </section>
+
+            <section id="education">
+              <h2 className="text-2xl font-semibold border-b border-gray-300 pb-2 mb-4">
+                {t.education}
+              </h2>
+              <MarkdownViewer section="education" language={language} />
+            </section>
+
+            <section id="certificates">
+              <h2 className="text-2xl font-semibold border-b border-gray-300 pb-2 mb-4">
+                {t.certificates}
+              </h2>
+              <MarkdownViewer section="certificates" language={language} />
+            </section>
+            
+            <section id="projects">
+              <h2 className="text-2xl font-semibold border-b border-gray-300 pb-2 mb-4">
+                {t.projects}
+              </h2>
+              <MarkdownViewer section="projects" language={language} />
+            </section>
           </div>
         </div>
-
-        {/* Experience section - full width */}
-        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-          <h2 className="text-2xl font-bold mb-4 text-blue-700 border-b border-blue-300 pb-2">
-            {t.experience}
-          </h2>
-          <div className="prose max-w-none">
-            <MarkdownViewer section="experience" language={language} />
-          </div>
-        </div>
-
       </main>
       
       <footer className="bg-gray-800 text-white py-6 px-4">

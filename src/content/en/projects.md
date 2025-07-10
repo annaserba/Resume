@@ -1,3 +1,7 @@
+### Personal site with resume
+Technologies:
+✓ React.js, Vite, TypeScript
+
 ### Chrome plugin with AL analytics
 Technologies:
 ✓ OpenAPI, React.js, TypeScript 

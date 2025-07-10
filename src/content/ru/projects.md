@@ -1,3 +1,7 @@
+### Личный сайт с резюме
+Технологии:
+✓ React.js, Vite, TypeScript
+
 ### Создание chrome плагина с AL аналитиком
 Технологии:
 ✓ OpenAPI, React.js, TypeScript 
