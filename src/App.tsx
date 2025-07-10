@@ -37,7 +37,7 @@ const App = () => {
       <header className="bg-white shadow-md sticky top-0 z-10">
         <div className="container mx-auto p-4 md:px-8">
           <div className="flex justify-between items-center">
-            <Contacts language={language} />
+            <Contacts language={language} color="white" />
             <div className="flex items-center gap-4">
               <a 
                 href={`/resume_${language}.pdf`} 
@@ -68,18 +68,31 @@ const App = () => {
           </div>
         </div>
 
-        {/* Education section - full width */}
-        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-          <h2 className="text-2xl font-bold mb-4 text-blue-700 border-b border-blue-300 pb-2">
-            {t.education}
-          </h2>
-          <div className="prose max-w-none">
-            <MarkdownViewer section="education" language={language} />
+        {/* Education and Certificates in one row */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          {/* Education section */}
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <h2 className="text-2xl font-bold mb-4 text-blue-700 border-b border-blue-300 pb-2">
+              {t.education}
+            </h2>
+            <div className="prose max-w-none">
+              <MarkdownViewer section="education" language={language} />
+            </div>
+          </div>
+
+          {/* Certificates section */}
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <h2 className="text-2xl font-bold mb-4 text-blue-700 border-b border-blue-300 pb-2">
+              {t.certificates}
+            </h2>
+            <div className="prose max-w-none">
+              <MarkdownViewer section="certificates" language={language} />
+            </div>
           </div>
         </div>
 
         {/* Grid layout for smaller sections */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           {/* Skills section */}
           <div className="bg-white rounded-lg shadow-md p-6">
             <section id="skills">
@@ -94,16 +107,6 @@ const App = () => {
               <h2 className="text-2xl font-bold text-blue-800 mb-4">{t.projects}</h2>
               <div className="prose max-w-none">
                 <MarkdownViewer section="projects" language={language} />
-              </div>
-            </section>
-          </div>
-
-          {/* Certificates section */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <section id="certificates">
-              <h2 className="text-2xl font-bold text-blue-800 mb-4">{t.certificates}</h2>
-              <div className="prose max-w-none">
-                <MarkdownViewer section="certificates" language={language} />
               </div>
             </section>
           </div>
@@ -122,8 +125,15 @@ const App = () => {
       </main>
       
       <footer className="bg-gray-800 text-white py-6 px-4">
-        <div className="container mx-auto text-center">
-          <p>{new Date().getFullYear()} {t.footer}</p>
+        <div className="container mx-auto md:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-4 md:mb-0">
+              <Contacts language={language} color="dark" />
+            </div>
+            <div className="text-center md:text-right">
+              <p>{new Date().getFullYear()} {t.footer}</p>
+            </div>
+          </div>
         </div>
       </footer>
     </div>

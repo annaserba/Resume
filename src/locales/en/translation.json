@@ -9,5 +9,6 @@
     "contacts": "Contacts",
     "footer": "Anna Serba. All rights reserved.",
     "pdfGenerator": "PDF",
-    "header": "Last updated in "
+    "headerPdf": "Last updated in ",
+    "footerPdf": "Page"
 }

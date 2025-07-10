@@ -14,7 +14,7 @@ const MarkdownViewer: React.FC<MarkdownViewerProps> = ({ section, language }) =>
     const fetchMarkdown = async () => {
       setIsLoading(true);
       try {
-        const response: any = await import(`@/content/${language}/${section}.md`);
+        const response = await import(`@/content/${language}/${section}.md`);
         const text = await response.html;
         setContent(text);
         setError(null);

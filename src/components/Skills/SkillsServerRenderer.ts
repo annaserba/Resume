@@ -23,11 +23,11 @@ export function renderSkills(skills: SkillCategory[]): string {
     return `<div class="flex gap-1 ml-2" style="display: flex; gap: 4px; margin-left: 8px;">${dots}</div>`;
   };
 
-  let html = '<div class="skills-container">';
+  let html = '<div class="skills-container markdown-content">';
   
   skills.forEach((category) => {
     html += `<div class="mb-4" style="margin-bottom: 1rem;">
-      <h2 class="text-xl font-semibold mb-2" style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">${category.category}</h2>
+      <h2 class="text-xl font-semibold mb-2">${category.category}</h2>
       <ul class="list-none pl-0" style="list-style: none; padding-left: 0;">`;
     
     category.items.forEach((skill) => {
