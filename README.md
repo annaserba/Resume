@@ -26,6 +26,8 @@
 - [vite-plugin-markdown](https://github.com/hmsk/vite-plugin-markdown) - плагин для импорта Markdown-файлов как модулей
 - [React Icons](https://react-icons.github.io/react-icons/) - библиотека иконок для React
 - [Puppeteer](https://pptr.dev/) - библиотека для автоматизации браузера и генерации PDF
+- [Jest](https://jestjs.io/) - фреймворк для тестирования JavaScript
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) - библиотека для тестирования React компонентов
 - [Husky](https://typicode.github.io/husky/) - инструмент для управления Git-хуками
 - [ESLint](https://eslint.org/) - инструмент для анализа кода и поиска ошибок
 - [lint-staged](https://github.com/okonet/lint-staged) - запуск линтеров только для измененных файлов
@@ -127,6 +129,21 @@ resume/
    ```bash
    npm run lint:fix
    ```
+   
+9. Запуск тестов:
+   ```bash
+   npm test
+   ```
+   
+10. Запуск тестов в режиме наблюдения:
+   ```bash
+   npm run test:watch
+   ```
+   
+11. Запуск тестов с отчетом о покрытии:
+   ```bash
+   npm run test:coverage
+   ```
 
 ## Редактирование резюме
 
@@ -137,6 +154,54 @@ resume/
 Проект использует Tailwind CSS для стилизации компонентов. Основные стили определены в файле `src/styles.css` и применяются непосредственно к компонентам через утилитарные классы Tailwind.
 
 Для стилизации Markdown-контента используется плагин `@tailwindcss/typography`, который обеспечивает красивое отображение типографики в Markdown.
+
+## Тестирование
+
+Проект использует Jest и React Testing Library для модульного и интеграционного тестирования компонентов и функциональности.
+
+### Структура тестов
+
+Тесты располагаются в директориях `__tests__` рядом с тестируемыми компонентами. Например:
+
+```
+src/
+└── components/
+    └── MarkdownViewer/
+        ├── MarkdownViewer.tsx
+        └── __tests__/
+            └── MarkdownViewer.test.tsx
+```
+
+### Запуск тестов
+
+Для запуска всех тестов используйте команду:
+
+```bash
+npm test
+```
+
+Для запуска тестов в режиме наблюдения (тесты будут перезапускаться при изменении файлов):
+
+```bash
+npm run test:watch
+```
+
+Для генерации отчета о покрытии кода тестами:
+
+```bash
+npm run test:coverage
+```
+
+### Моки и тестовые пропсы
+
+Для тестирования компонентов, которые используют Markdown-файлы, используются моки в директории `src/__mocks__/`. Все моки написаны на TypeScript.
+
+Компоненты также поддерживают специальные тестовые пропсы для изолированного тестирования:
+
+- `MarkdownViewer` принимает `testContent`, `testIsLoading` и `testError` для контроля состояния в тестах
+- `SkillsViewer` принимает `testSkillCategories`, `testIsLoading` и `testError` для контроля состояния в тестах
+
+Эти тестовые пропсы позволяют избежать реальной загрузки markdown-файлов в тестах, что делает тесты более быстрыми, надежными и изолированными.
 ```
 
 ## Как использовать

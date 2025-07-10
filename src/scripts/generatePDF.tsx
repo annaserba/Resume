@@ -101,7 +101,7 @@ function getTranslation(language: string) {
 async function combineMarkdownFiles(language: string) {
   // Reordered sections with contacts right after name, skills moved to right side, and experience at the end
   const sectionsLeft = ['about', 'experience'];
-  const sectionsRight = ['skills', 'education', 'certificates', 'projects'];
+  const sectionsRight = ['skills', 'education', 'certificates', 'projects', 'languages'];
   const sectionsFooter: string[] = [];
 
   

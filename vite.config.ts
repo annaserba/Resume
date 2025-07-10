@@ -2,10 +2,10 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
 import * as markdown from 'vite-plugin-markdown';
+import { Mode } from 'vite-plugin-markdown';
 
-// @ts-ignore - Ignoring type issues with the markdown plugin options
 const options = {
-    mode: ['html'],
+    mode: ['html'] as Mode[],
     markdownItOptions: {
       html: true,
       linkify: true,
@@ -16,7 +16,6 @@ const options = {
 export default defineConfig({
   plugins: [
     react(),
-    // @ts-ignore - Ignoring type issues with the markdown plugin
     markdown.plugin(options),
   ],
   assetsInclude: ['./src/content/*.md', './src/locales/*.json'],

@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Skills from '../Skills/Skills';
 
 interface SkillsViewerProps {
   language: string;
+  // Тестовые пропсы
+  testSkillCategories?: SkillCategory[];
+  testIsLoading?: boolean;
+  testError?: string | null;
 }
 
 interface SkillWithLevel {
@@ -15,17 +19,27 @@ interface SkillCategory {
   items: SkillWithLevel[];
 }
 
-const SkillsViewer: React.FC<SkillsViewerProps> = ({ language }) => {
-  const [skillCategories, setSkillCategories] = useState<SkillCategory[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+const SkillsViewer: React.FC<SkillsViewerProps> = ({ 
+  language, 
+  testSkillCategories,
+  testIsLoading,
+  testError 
+}) => {
+  const [skillCategories, setSkillCategories] = useState<SkillCategory[]>(testSkillCategories || []);
+  const [isLoading, setIsLoading] = useState<boolean>(testIsLoading !== undefined ? testIsLoading : true);
+  const [error, setError] = useState<string | null>(testError !== undefined ? testError : null);
 
   useEffect(() => {
+    // Если предоставлены тестовые пропсы, не загружаем markdown
+    if (testSkillCategories !== undefined || testIsLoading !== undefined || testError !== undefined) {
+      return;
+    }
+    
     const fetchSkills = async () => {
       setIsLoading(true);
       try {
-        const response: any = await import(`@/content/${language}/skills.md`);
-        const text = await response.html;
+        const response = await import(`@/content/${language}/skills.md`);
+        const text = response.html as string;
         
         // Парсинг markdown для извлечения категорий и навыков с уровнями
         const categories = parseSkillsMarkdown(text);
@@ -40,7 +54,7 @@ const SkillsViewer: React.FC<SkillsViewerProps> = ({ language }) => {
     };
 
     fetchSkills();
-  }, [language]);
+  }, [language, testSkillCategories, testIsLoading, testError]);
 
   // Функция для парсинга markdown с навыками
   const parseSkillsMarkdown = (html: string): SkillCategory[] => {
@@ -97,7 +111,7 @@ const SkillsViewer: React.FC<SkillsViewerProps> = ({ language }) => {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center py-8">
-        <div className="animate-pulse flex space-x-2">
+        <div className="animate-pulse flex space-x-2" data-testid="skills-loading">
           <div className="h-2 w-2 bg-blue-600 rounded-full"></div>
           <div className="h-2 w-2 bg-blue-600 rounded-full"></div>
           <div className="h-2 w-2 bg-blue-600 rounded-full"></div>

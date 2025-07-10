@@ -9,7 +9,7 @@ import Contacts from './components/Contacts/Contacts';
 
 
 const App = () => {
-  const [language, setLanguage] = useState<string>('ru');
+  const [language, setLanguage] = useState<string>('en');
   
   const handleLanguageChange = (newLanguage: string) => {
     setLanguage(newLanguage);
@@ -27,7 +27,7 @@ const App = () => {
     } else {
       // Determine browser language
       const browserLang = navigator.language.split('-')[0];
-      const newLang = (browserLang === 'ru' || browserLang === 'en') ? browserLang : 'ru';
+      const newLang = (browserLang === 'ru') ? browserLang : 'en';
       setLanguage(newLang);
     }
   }, []);
@@ -104,6 +104,13 @@ const App = () => {
                 {t.projects}
               </h2>
               <MarkdownViewer section="projects" language={language} />
+            </section>
+            
+            <section id="languages">
+              <h2 className="text-2xl font-semibold border-b border-gray-300 pb-2 mb-4">
+                {t.languages}
+              </h2>
+              <MarkdownViewer section="languages" language={language} />
             </section>
           </div>
         </div>

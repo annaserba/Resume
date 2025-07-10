@@ -10,7 +10,10 @@
     "preview": "vite preview",
     "prepare": "husky",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src/",
-    "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx src/ --fix"
+    "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx src/ --fix",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -22,16 +25,11 @@
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.16",
     "@vitejs/plugin-react": "^4.0.0",
-    "html-to-image": "^1.11.13",
-    "html2pdf.js": "^0.10.3",
-    "jspdf": "^3.0.1",
-    "jspdf-autotable": "^5.0.2",
     "marked": "^16.0.0",
     "puppeteer": "^24.12.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.5.0",
-    "react-markdown": "^10.1.0",
     "typescript": "^5.8.3",
     "vite": "^7.0.4",
     "vite-plugin-markdown": "^2.2.0"
@@ -39,6 +37,9 @@
   "devDependencies": {
     "@eslint/js": "^9.30.1",
     "@tailwindcss/typography": "^0.5.16",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@types/jest": "^30.0.0",
     "@typescript-eslint/eslint-plugin": "^8.36.0",
     "@typescript-eslint/parser": "^8.36.0",
     "autoprefixer": "^10.4.21",
@@ -46,9 +47,13 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
     "husky": "^9.1.7",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^30.0.4",
+    "jest-environment-jsdom": "^30.0.4",
     "lint-staged": "^16.1.2",
     "postcss": "^8.4.31",
     "tailwindcss": "^3.3.2",
+    "ts-jest": "^29.4.0",
     "ts-node": "^10.9.2",
     "tsx": "^4.20.3",
     "typescript-eslint": "^8.36.0"

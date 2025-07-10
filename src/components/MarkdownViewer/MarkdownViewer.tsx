@@ -1,16 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface MarkdownViewerProps {
   section: string;
   language: string;
+  // Тестовые пропсы
+  testContent?: string;
+  testIsLoading?: boolean;
+  testError?: string | null;
 }
 
-const MarkdownViewer: React.FC<MarkdownViewerProps> = ({ section, language }) => {
-  const [content, setContent] = useState<string>('');
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+const MarkdownViewer: React.FC<MarkdownViewerProps> = ({ 
+  section, 
+  language, 
+  testContent, 
+  testIsLoading, 
+  testError 
+}) => {
+  const [content, setContent] = useState<string>(testContent || '');
+  const [isLoading, setIsLoading] = useState<boolean>(testIsLoading !== undefined ? testIsLoading : true);
+  const [error, setError] = useState<string | null>(testError !== undefined ? testError : null);
 
   useEffect(() => {
+    // Если предоставлены тестовые пропсы, не загружаем markdown
+    if (testContent !== undefined || testIsLoading !== undefined || testError !== undefined) {
+      return;
+    }
+    
     const fetchMarkdown = async () => {
       setIsLoading(true);
       try {
@@ -27,12 +42,12 @@ const MarkdownViewer: React.FC<MarkdownViewerProps> = ({ section, language }) =>
     };
 
     fetchMarkdown();
-  }, [section, language]);
+  }, [section, language, testContent, testIsLoading, testError]);
 
   if (isLoading) {
     return (
       <div className="flex justify-center items-center py-8">
-        <div className="animate-pulse flex space-x-2">
+        <div className="animate-pulse flex space-x-2" data-testid="loading-animation">
           <div className="h-2 w-2 bg-blue-600 rounded-full"></div>
           <div className="h-2 w-2 bg-blue-600 rounded-full"></div>
           <div className="h-2 w-2 bg-blue-600 rounded-full"></div>
@@ -59,6 +74,7 @@ const MarkdownViewer: React.FC<MarkdownViewerProps> = ({ section, language }) =>
     <div 
       className="markdown-content prose prose-blue max-w-none"
       dangerouslySetInnerHTML={{ __html: content }}
+      data-testid="markdown-content"
     />
   );
 };
