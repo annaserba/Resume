@@ -1,13 +1,11 @@
 import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
-import useTranslation from "../../hooks/useTraslation";
 
 interface ContactsProps {
-    language: string;
     color: 'white' | 'dark';
+    t: Record<string, string>;
 }
 
-export default function Contacts({ language, color }: ContactsProps) {
-    const { t } = useTranslation(language);
+export default function Contacts({ color, t }: ContactsProps) {
     
     return (
        <div>

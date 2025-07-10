@@ -93,14 +93,6 @@ const App = () => {
 
         {/* Grid layout for smaller sections */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          {/* Skills section */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <section id="skills">
-              <h2 className="text-2xl font-bold text-blue-800 mb-4">{t.skills}</h2>
-              <SkillsViewer language={language} />
-            </section>
-          </div>
-
           {/* Projects section */}
           <div className="bg-white rounded-lg shadow-md p-6">
             <section id="projects">
@@ -108,6 +100,14 @@ const App = () => {
               <div className="prose max-w-none">
                 <MarkdownViewer section="projects" language={language} />
               </div>
+            </section>
+          </div>
+
+          {/* Skills section */}
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <section id="skills">
+              <h2 className="text-2xl font-bold text-blue-800 mb-4">{t.skills}</h2>
+              <SkillsViewer language={language} />
             </section>
           </div>
         </div>
@@ -128,7 +128,7 @@ const App = () => {
         <div className="container mx-auto md:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
-              <Contacts language={language} color="dark" />
+              <Contacts color="dark" t={t} />
             </div>
             <div className="text-center md:text-right">
               <p>{new Date().getFullYear()} {t.footer}</p>

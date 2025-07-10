@@ -98,24 +98,26 @@ function getTranslation(language: string) {
 }
 
 // Function to read markdown files and combine them
-async function combineMarkdownFiles(language: string): Promise<string> {
-  // Reordered sections with contacts right after name and experience at the end
-  const sections = ['about', 'education', 'skills', 'projects', 'certificates', 'experience'];
-  let combinedContent = '';
+async function combineMarkdownFiles(language: string) {
+  // Reordered sections with contacts right after name, skills moved to right side, and experience at the end
+  const sectionsLeft = ['about', 'experience'];
+  const sectionsRight = ['skills', 'education', 'certificates', 'projects'];
+  const sectionsFooter: string[] = [];
+
   
   // Import translations from JSON files
   const translations = getTranslation(language);
-  
  
-  // Use server-side rendering for the Contacts component
-  // This uses the same component structure as in the React app
-  const contactsHtml = renderToString(<Contacts language={language} color='white' />);
+  const contactsHtml = renderToString(<Contacts color='white' t={translations} />);
+  const oneColumnContent = renderingContent(sectionsLeft, translations, language);
+  const twoColumnContent = renderingContent(sectionsRight, translations, language);
+  const footerContent = renderingContent(sectionsFooter, translations, language);
+  
+  return {header: contactsHtml, oneColumnContent, twoColumnContent, footer: footerContent};
+}
 
-  
-  // Add the server-rendered contacts HTML to the combined content
-  combinedContent += contactsHtml + '\n\n';
-  
-  // Add remaining sections
+function renderingContent(sections: string[], translations: Record<string, string>, language: string) {
+let result = '';
   for (const section of sections) {
     try {
       const filePath = path.join(__dirname, '..', 'content', language, `${section}.md`);
@@ -130,29 +132,34 @@ async function combineMarkdownFiles(language: string): Promise<string> {
           // Парсим навыки с уровнями и рендерим их с помощью серверного рендерера
           const skillCategories = parseSkillsMarkdown(content);
           const skillsHtml = renderSkills(skillCategories);
-          combinedContent += `## ${sectionTitle}\n\n${skillsHtml}\n\n`;
+          result += `## ${sectionTitle}\n\n${skillsHtml}\n\n`;
         } else {
           // Для остальных разделов используем обычный markdown
-          combinedContent += `## ${sectionTitle}\n\n${content}\n\n`;
+          result += `## ${sectionTitle}\n\n${content}\n\n`;
         }
       }
     } catch (error) {
       console.error(`Error reading ${section} file for ${language}:`, error);
     }
   }
-  
-  return combinedContent;
+  return result;
 }
 
+
 // Function to generate PDF from markdown content using html2pdf approach with puppeteer
-async function generatePDF(markdown: string, outputPath: string, language: string): Promise<void> {
+async function generatePDF(header: string, oneColumnContent: string, twoColumnContent: string, footer: string, outputPath: string, language: string): Promise<void> {
   try {
     const translations = getTranslation(language);
     // Convert markdown to HTML
-    const html = await marked(markdown);
     
     // Get styled HTML template from external file
-    const styledHtml = getPdfTemplate({html, language});
+    const styledHtml = getPdfTemplate({
+      header: await marked(header), 
+      oneColumnContent: await marked(oneColumnContent), 
+      twoColumnContent: await marked(twoColumnContent), 
+      footer: await marked(footer), 
+      language
+    });
     
     // Launch a headless browser
     const browser = await puppeteer.launch({
@@ -213,7 +220,7 @@ async function generateResumePDFs(): Promise<void> {
     try {
       const markdown = await combineMarkdownFiles(language);
       const outputPath = path.join(publicDir, `resume_${language}.pdf`);
-      generatePDF(markdown, outputPath, language);
+      await generatePDF(markdown.header, markdown.oneColumnContent, markdown.twoColumnContent, markdown.footer, outputPath, language);
     } catch (error) {
       console.error(`Error generating PDF for ${language}:`, error);
     }
