@@ -1,4 +1,4 @@
-## Senior Web Developer
+## Team Lead Front-end Developer
 **SuperJob | June 2021 - June 2025**
 ***Implemented:***
 
@@ -37,7 +37,7 @@
 
 ✓ 3x increase in the speed of implementation of branding projects
 
-## Web Developer
+## Senior Front-end Developer
 **Pluritech | February 2019 - May 2021**
 
 ***Key achievements:***
