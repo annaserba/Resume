@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './styles.css';
-import Resume from './components/Resume/Resume';
+import Resume from './components/Resume';
 
 const App = () => {
   const [language, setLanguage] = useState('en');

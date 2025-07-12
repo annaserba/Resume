@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Skills from '../Skills/Skills';
+import Skills from './Skills';
 
 interface SkillsViewerProps {
   language: string;

@@ -1,9 +1,9 @@
-import MarkdownViewer from '../MarkdownViewer/MarkdownViewer';
-import SkillsViewer from '../SkillsViewer/SkillsViewer';
+import { MarkdownViewer } from '../Markdown';
+import { SkillsViewer } from '../Skills';
 import useTranslation from '../../hooks/useTraslation';
 import Contacts from '../Contacts/Contacts';
 import { FaDownload } from 'react-icons/fa';
-import LanguageDropdown from '../LanguageDropdown/LanguageDropdown';
+import { LanguageDropdown } from '../Language';
 
 interface ResumeProps {
   language: string;

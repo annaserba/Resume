@@ -8,7 +8,7 @@ import en from '../locales/en/translation.json';
 import { getPdfTemplate } from '../templates/pdfTemplate';
 import { renderToString } from 'react-dom/server';
 import Contacts from '../components/Contacts/Contacts';
-import renderSkills from '../components/Skills/SkillsServerRenderer';
+import { SkillsServerRenderer } from '../components/Skills/';
 
 // Use require for importing binary files and JSON
 const require = createRequire(import.meta.url);
@@ -131,7 +131,7 @@ let result = '';
         if (section === 'skills') {
           // Парсим навыки с уровнями и рендерим их с помощью серверного рендерера
           const skillCategories = parseSkillsMarkdown(content);
-          const skillsHtml = renderSkills(skillCategories);
+          const skillsHtml = SkillsServerRenderer(skillCategories);
           result += `## ${sectionTitle}\n\n${skillsHtml}\n\n`;
         } else {
           // Для остальных разделов используем обычный markdown
