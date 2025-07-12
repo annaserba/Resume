@@ -1,16 +1,18 @@
 import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
 
-interface ContactsProps {
-    color: 'white' | 'dark';
-    t: Record<string, string>;
+
+interface Props {
+    color: 'dark' | 'light';
+    translations: Record<string, string>;
 }
 
-export default function Contacts({ color, t }: ContactsProps) {
+export default function Contacts({ color, translations }: Props) {
+    
     
     return (
        <div>
             <h1 className={`text-3xl font-bold ${color === 'dark' ? 'text-white' : 'text-blue-800'}`}>
-            {t.name}
+            {translations.name}
             </h1>
             <div className="mt-2 flex items-center gap-4 text-gray-600">
             <a href="mailto:anna.serba@gmail.com" className="flex items-center gap-1 hover:text-blue-600 transition-colors">

@@ -27,31 +27,35 @@
   @apply text-blue-600 hover:text-blue-800 underline;
 }
 
+body.dark-theme {
+  @apply bg-gray-900 text-gray-100;
+}
+
 /* Dark theme styles */
-.dark .markdown-content h2 {
+.dark-theme .markdown-content h2 {
   @apply text-blue-300;
 }
 
-.dark .markdown-content h3 {
+.dark-theme .markdown-content h3 {
   @apply text-blue-200;
 }
 
-.dark .markdown-content p {
+.dark-theme .markdown-content p {
   @apply text-gray-100;
 }
 
-.dark .markdown-content ul {
+.dark-theme .markdown-content ul {
   @apply text-gray-100;
 }
 
-.dark .markdown-content li {
+.dark-theme .markdown-content li {
   @apply text-gray-100;
 }
 
-.dark .markdown-content strong {
+.dark-theme .markdown-content strong {
   @apply text-white font-bold;
 }
 
-.dark .markdown-content a {
+.dark-theme .markdown-content a {
   @apply text-blue-300 hover:text-blue-200;
 }

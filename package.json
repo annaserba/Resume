@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "generate-pdf": "tsx src/scripts/generatePDF.tsx",
-    "dev": "npm run generate-pdf && vite",
-    "build": "npm run generate-pdf && vite build",
+    "dev": "yarn run generate-pdf && vite",
+    "build": "vite build && yarn run generate-pdf",
     "preview": "vite preview",
     "prepare": "husky",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src/",
@@ -17,22 +17,25 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "npm run lint:fix"
+      "yarn run lint:fix"
     ]
   },
   "dependencies": {
+    "@openai/agents": "^0.0.11",
     "@types/node": "^24.0.12",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.16",
     "@vitejs/plugin-react": "^4.0.0",
     "marked": "^16.0.0",
+    "openai": "^5.9.0",
     "puppeteer": "^24.12.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.5.0",
     "typescript": "^5.8.3",
     "vite": "^7.0.4",
-    "vite-plugin-markdown": "^2.2.0"
+    "vite-plugin-markdown": "^2.2.0",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",
@@ -56,6 +59,7 @@
     "ts-jest": "^29.4.0",
     "ts-node": "^10.9.2",
     "tsx": "^4.20.3",
-    "typescript-eslint": "^8.36.0"
+    "typescript-eslint": "^8.36.0",
+    "vite-plugin-static-copy": "^3.1.0"
   }
 }

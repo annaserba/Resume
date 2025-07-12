@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import './styles.css';
 import Resume from './components/Resume';
-import { useTheme } from './hooks/useTheme';
+import ChatWidget from './components/ChatWidget';
+import useTranslation from './hooks/useTraslation';
+import { useLanguage } from './contexts/LanguageContext';
 
 const App = () => {
-  const [language, setLanguage] = useState('en');
-  const { theme, toggleTheme } = useTheme();
+  const { language, setLanguage } = useLanguage();
+  const { t } = useTranslation(language);
 
   useEffect(() => {
     // Получаем язык из URL параметров
@@ -39,6 +41,8 @@ const App = () => {
     // Обновляем URL с правильным параметром
     updateUrlWithLanguage(newLang);
   }, []);
+  
+  // Theme is now managed by ThemeProvider
 
   // Функция для обновления URL с параметром языка
   const updateUrlWithLanguage = (lang: string) => {
@@ -49,13 +53,23 @@ const App = () => {
 
   // Функция для изменения языка
   const handleLanguageChange = (newLanguage: string) => {
-    setLanguage(newLanguage);
-    localStorage.setItem('language', newLanguage);
-    document.documentElement.lang = newLanguage;
+    setLanguage(newLanguage as 'en' | 'ru');
     updateUrlWithLanguage(newLanguage);
   };
 
-  return <Resume language={language} onLanguageChange={handleLanguageChange} theme={theme} toggleTheme={toggleTheme} />;
+  const env = import.meta.env;
+
+  return (
+    <>
+      <Resume t={t} language={language} onLanguageChange={handleLanguageChange} />
+      <ChatWidget 
+        apiKey={env?.VITE_OPENAI_API_KEY}
+        position="bottom-right"
+        primaryColor="#4a6cf7"
+        language={language}
+      />
+    </>
+  );
 };
 
 export default App;

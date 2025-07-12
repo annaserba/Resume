@@ -1,27 +1,36 @@
 ## Team Lead Front-end Developer
 **SuperJob | June 2021 - June 2025**
 
-***Situation:*** The company faced manual branding processes taking up to 2 weeks, requiring automation to improve efficiency.
+***Situation:*** The company is faced with the need to:
+- automation of branding creation processes (pages with company descriptions), which took up to 2 weeks manually;
 
-***Task:*** Develop a system to automate parsing and branding tasks, reducing time and enhancing quality.
+- adding integration with mobile applications;
+
+- outsourcing and reducing the entry threshold of competencies from middle to junior.
+
+***Task:*** Separate it into a separate project to automate the creation of branding;
 
 ***Action:***
 
-✓ Built the core system using React + TypeScript, including a parser for automation.
+✓ Created the core of the TypeScript system, including a parser for automating processes.
 
-✓ Adapted the system for mobile applications.
+✓ The system has been adapted for mobile applications.
 
-✓ Led a team of 12 developers, conducted code reviews, and mentored junior specialists.
+✓ Added autotests and achieved 70% code coverage with autotests.
+
+✓ Conducted a code review and mentoring of outsource junior specialists.
 
 ***Result:***
 
-✓ Reduced task completion time from 2 weeks to 1 hour.
+✓ Reduced the task completion time from 2 weeks to 3 hours.
 
-✓ Achieved 90% test coverage for critical functionality.
+✓ Reduced the cost by 80% through parsing and outsourcing.
 
-✓ Increased project implementation speed by 3x.
+✓ Added integration with mobile applications to attract major market players.
 
-***Technologies:*** React.js, TypeScript, Jest, Cypress.
+✓ Improved the quality of the code and reduced the number of bugs, got rid of the legacy code.
+
+***Technologies:*** React.js, TypeScript, Jest.
 
 
 ## Senior Front-end Developer

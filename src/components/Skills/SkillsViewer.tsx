@@ -3,7 +3,6 @@ import Skills from './Skills';
 
 interface SkillsViewerProps {
   language: string;
-  theme?: 'light' | 'dark';
   // Тестовые пропсы
   testSkillCategories?: SkillCategory[];
   testIsLoading?: boolean;
@@ -22,7 +21,6 @@ interface SkillCategory {
 
 const SkillsViewer: React.FC<SkillsViewerProps> = ({ 
   language, 
-  theme = 'light',
   testSkillCategories,
   testIsLoading,
   testError 
@@ -135,7 +133,7 @@ const SkillsViewer: React.FC<SkillsViewerProps> = ({
     );
   }
 
-  return <Skills skills={skillCategories} theme={theme} />;
+  return <Skills skills={skillCategories} />;
 };
 
 export default SkillsViewer;

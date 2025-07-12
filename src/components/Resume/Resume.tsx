@@ -1,20 +1,19 @@
 import { MarkdownViewer } from '../Markdown';
 import { SkillsViewer } from '../Skills';
-import useTranslation from '../../hooks/useTraslation';
 import Contacts from '../Contacts/Contacts';
 import { FaDownload } from 'react-icons/fa';
 import { LanguageDropdown } from '../Language';
 import { ThemeToggle } from '../ThemeToggle';
+import { useTheme } from '../../contexts/ThemeContext';
 
 interface ResumeProps {
   language: string;
   onLanguageChange?: (newLanguage: string) => void;
-  theme?: 'light' | 'dark';
-  toggleTheme?: () => void;
+  t: Record<string, string>;
 }
 
-const Resume = ({ language, onLanguageChange, theme = 'light', toggleTheme }: ResumeProps) => {
-  const { t } = useTranslation(language);
+const Resume = ({ language, onLanguageChange, t }: ResumeProps) => {
+  const { theme } = useTheme();
   
   const handleLanguageChange = (newLanguage: string) => {
     if (onLanguageChange) {
@@ -30,11 +29,11 @@ const Resume = ({ language, onLanguageChange, theme = 'light', toggleTheme }: Re
       <header className={`${theme === 'dark' ? 'bg-gray-800' : 'bg-white'} shadow-md sticky top-0 z-10`}>
         <div className="container mx-auto p-4 md:px-8">
           <div className="flex justify-between items-center">
-            <Contacts color={theme === 'dark' ? 'dark' : 'white'} t={t} />
+            <Contacts color={theme === 'dark' ? 'dark' : 'light'} translations={t} />
             <div className="flex items-center gap-4">
               <a 
-                href={`/resume_${language}.pdf`} 
-                download
+                href={`${import.meta.env?.BASE_URL || '/'}resume_${language}.pdf`} 
+                download={`resume_${language}.pdf`}
                 className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md transition-colors"
                 title={t.pdfGenerator}
               >
@@ -45,9 +44,7 @@ const Resume = ({ language, onLanguageChange, theme = 'light', toggleTheme }: Re
                 currentLanguage={language} 
                 onLanguageChange={handleLanguageChange} 
               />
-              {toggleTheme && (
-                <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
-              )}
+              <ThemeToggle />
             </div>
           </div>
         </div>
@@ -61,14 +58,14 @@ const Resume = ({ language, onLanguageChange, theme = 'light', toggleTheme }: Re
               <h2 className={`text-2xl font-semibold border-b ${theme === 'dark' ? 'border-gray-600' : 'border-gray-300'} pb-2 mb-4`}>
                 {t.about}
               </h2>
-              <MarkdownViewer section="about" language={language} theme={theme} />
+              <MarkdownViewer section="about" language={language} />
             </section>
 
             <section id="experience">
               <h2 className={`text-2xl font-semibold border-b ${theme === 'dark' ? 'border-gray-600' : 'border-gray-300'} pb-2 mb-4`}>
                 {t.experience}
               </h2>
-              <MarkdownViewer section="experience" language={language} theme={theme} />
+              <MarkdownViewer section="experience" language={language} />
             </section>
           </div>
 
@@ -78,35 +75,35 @@ const Resume = ({ language, onLanguageChange, theme = 'light', toggleTheme }: Re
               <h2 className={`text-2xl font-semibold border-b ${theme === 'dark' ? 'border-gray-600' : 'border-gray-300'} pb-2 mb-4`}>
                 {t.skills}
               </h2>
-              <SkillsViewer language={language} theme={theme} />
+              <SkillsViewer language={language} />
             </section>
 
             <section id="education">
               <h2 className={`text-2xl font-semibold border-b ${theme === 'dark' ? 'border-gray-600' : 'border-gray-300'} pb-2 mb-4`}>
                 {t.education}
               </h2>
-              <MarkdownViewer section="education" language={language} theme={theme} />
+              <MarkdownViewer section="education" language={language} />
             </section>
 
             <section id="certificates">
               <h2 className={`text-2xl font-semibold border-b ${theme === 'dark' ? 'border-gray-600' : 'border-gray-300'} pb-2 mb-4`}>
                 {t.certificates}
               </h2>
-              <MarkdownViewer section="certificates" language={language} theme={theme} />
+              <MarkdownViewer section="certificates" language={language} />
             </section>
             
             <section id="projects">
               <h2 className={`text-2xl font-semibold border-b ${theme === 'dark' ? 'border-gray-600' : 'border-gray-300'} pb-2 mb-4`}>
                 {t.projects}
               </h2>
-              <MarkdownViewer section="projects" language={language} theme={theme} />
+              <MarkdownViewer section="projects" language={language} />
             </section>
             
             <section id="languages">
               <h2 className={`text-2xl font-semibold border-b ${theme === 'dark' ? 'border-gray-600' : 'border-gray-300'} pb-2 mb-4`}>
                 {t.languages}
               </h2>
-              <MarkdownViewer section="languages" language={language} theme={theme} />
+              <MarkdownViewer section="languages" language={language} />
             </section>
           </div>
         </div>
@@ -116,7 +113,7 @@ const Resume = ({ language, onLanguageChange, theme = 'light', toggleTheme }: Re
         <div className="container mx-auto md:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
-              <Contacts color="dark" t={t} />
+              <Contacts color="dark" translations={t} />
             </div>
             <div className="text-center md:text-right">
               <p>{new Date().getFullYear()} {t.footer}</p>

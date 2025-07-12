@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useTheme } from '../../contexts/ThemeContext';
 
 interface MarkdownViewerProps {
   section: string;
   language: string;
-  theme?: 'light' | 'dark';
   // Тестовые пропсы
   testContent?: string;
   testIsLoading?: boolean;
@@ -13,11 +13,11 @@ interface MarkdownViewerProps {
 const MarkdownViewer: React.FC<MarkdownViewerProps> = ({ 
   section, 
   language, 
-  theme = 'light',
   testContent, 
   testIsLoading, 
   testError 
 }) => {
+  const { theme } = useTheme();
   const [content, setContent] = useState<string>(testContent || '');
   const [isLoading, setIsLoading] = useState<boolean>(testIsLoading !== undefined ? testIsLoading : true);
   const [error, setError] = useState<string | null>(testError !== undefined ? testError : null);
@@ -73,7 +73,7 @@ const MarkdownViewer: React.FC<MarkdownViewerProps> = ({
 
   return (
     <div 
-      className={`markdown-content prose prose-blue max-w-none ${theme === 'dark' ? 'dark' : ''}`} 
+      className={`markdown-content prose prose-blue max-w-none ${theme === 'dark' ? 'dark:prose-invert dark' : ''}`} 
       dangerouslySetInnerHTML={{ __html: content }} 
       data-testid="markdown-content"
     />

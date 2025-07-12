@@ -18,7 +18,7 @@ export default defineConfig({
     react(),
     markdown.plugin(options),
   ],
-  assetsInclude: ['./src/content/*.md', './src/locales/*.json'],
+  assetsInclude: ['./src/content/*.md', './src/locales/*.json', './public/*.*'],
   root: './',
   build: {
     outDir: 'dist',

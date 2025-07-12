@@ -11,5 +11,12 @@
     "footer": "Anna Serba. All rights reserved.",
     "pdfGenerator": "PDF",
     "headerPdf": "Last updated in ",
-    "footerPdf": "Page"
+    "footerPdf": "Page",
+    "botName": "Assistant Anna",
+    "greeting": "Hello! I'm Assistant Anna, your virtual assistant. How can I help you?",
+    "error": "Error",
+    "systemPrompt": "You are a helpful assistant.",
+    "limitReached": "You've reached your daily message limit. Please try again in",
+    "remaining": "Messages remaining today:",
+    "botPlaceholder": "Enter your message..."
 }

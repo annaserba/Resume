@@ -108,7 +108,7 @@ async function combineMarkdownFiles(language: string) {
   // Import translations from JSON files
   const translations = getTranslation(language);
  
-  const contactsHtml = renderToString(<Contacts color='white' t={translations} />);
+  const contactsHtml = renderToString(<Contacts color="dark" translations={translations} />);
   const oneColumnContent = renderingContent(sectionsLeft, translations, language);
   const twoColumnContent = renderingContent(sectionsRight, translations, language);
   const footerContent = renderingContent(sectionsFooter, translations, language);
@@ -204,7 +204,7 @@ async function generatePDF(header: string, oneColumnContent: string, twoColumnCo
 
 // Main function to generate PDFs for all languages
 async function generateResumePDFs(): Promise<void> {
-  const publicDir = path.join(__dirname, '../..', 'public');
+  const publicDir = path.join(__dirname, '../../public');
   
   // Create public directory if it doesn't exist
   if (!fs.existsSync(publicDir)) {

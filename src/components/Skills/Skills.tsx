@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTheme } from '../../contexts/ThemeContext';
 
 interface SkillWithLevel {
   name: string;
@@ -10,10 +11,10 @@ interface SkillsProps {
     category: string;
     items: SkillWithLevel[];
   }[];
-  theme?: 'light' | 'dark';
 }
 
-const Skills: React.FC<SkillsProps> = ({ skills, theme = 'light' }) => {
+const Skills: React.FC<SkillsProps> = ({ skills }) => {
+  const { theme } = useTheme();
   // Функция для отображения уровня навыка в виде точек
   const renderSkillLevel = (level: number) => {
     const dots = [];

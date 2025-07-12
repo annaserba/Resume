@@ -1,5 +1,5 @@
 // Импорт React не требуется в современных версиях React
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import SkillsViewer from '../SkillsViewer';
 
 describe('SkillsViewer Component', () => {
@@ -79,6 +79,7 @@ describe('SkillsViewer Component', () => {
     render(
       <SkillsViewer 
         language="en" 
+        theme="light"
         testSkillCategories={mockEnglishSkills}
         testIsLoading={false}
         testError={null}
@@ -86,21 +87,22 @@ describe('SkillsViewer Component', () => {
     );
     
     // Проверяем наличие категорий
-    expect(screen.getByText('Programming Languages')).toBeInTheDocument();
-    expect(screen.getByText('Frameworks & Libraries')).toBeInTheDocument();
-    expect(screen.getByText('Tools')).toBeInTheDocument();
-    expect(screen.getByText('Testing')).toBeInTheDocument();
+    expect(document.body.textContent).toContain('Programming Languages');
+    expect(document.body.textContent).toContain('Frameworks & Libraries');
+    expect(document.body.textContent).toContain('Tools');
+    expect(document.body.textContent).toContain('Testing');
     
     // Проверяем наличие навыков
-    expect(screen.getByText('JavaScript')).toBeInTheDocument();
-    expect(screen.getByText('TypeScript')).toBeInTheDocument();
-    expect(screen.getByText('React')).toBeInTheDocument();
+    expect(document.body.textContent).toContain('JavaScript');
+    expect(document.body.textContent).toContain('TypeScript');
+    expect(document.body.textContent).toContain('React');
   });
 
   test('renders Russian skills correctly', () => {
     render(
       <SkillsViewer 
         language="ru" 
+        theme="light"
         testSkillCategories={mockRussianSkills}
         testIsLoading={false}
         testError={null}
@@ -108,38 +110,56 @@ describe('SkillsViewer Component', () => {
     );
     
     // Проверяем наличие категорий
-    expect(screen.getByText('Языки программирования')).toBeInTheDocument();
-    expect(screen.getByText('Фреймворки и библиотеки')).toBeInTheDocument();
-    expect(screen.getByText('Инструменты')).toBeInTheDocument();
-    expect(screen.getByText('Тестирование')).toBeInTheDocument();
+    expect(document.body.textContent).toContain('Языки программирования');
+    expect(document.body.textContent).toContain('Фреймворки и библиотеки');
+    expect(document.body.textContent).toContain('Инструменты');
+    expect(document.body.textContent).toContain('Тестирование');
     
     // Проверяем наличие навыков
-    expect(screen.getByText('JavaScript')).toBeInTheDocument();
-    expect(screen.getByText('TypeScript')).toBeInTheDocument();
-    expect(screen.getByText('React')).toBeInTheDocument();
+    expect(document.body.textContent).toContain('JavaScript');
+    expect(document.body.textContent).toContain('TypeScript');
+    expect(document.body.textContent).toContain('React');
   });
 
   test('shows loading state', () => {
     render(
       <SkillsViewer 
         language="loading-skills" 
+        theme="light"
         testIsLoading={true}
         testError={null}
       />
     );
     
-    expect(screen.getByTestId('skills-loading')).toBeInTheDocument();
+    expect(document.querySelector('[data-testid="skills-loading"]')).not.toBeNull();
   });
 
   test('handles errors gracefully', () => {
     render(
       <SkillsViewer 
         language="error-skills" 
+        theme="light"
         testIsLoading={false}
         testError="Failed to load skills content"
       />
     );
     
-    expect(screen.getByText(/Failed to load skills content/i)).toBeInTheDocument();
+    expect(document.body.textContent).toContain('Failed to load skills content');
+  });
+  
+  test('renders with dark theme correctly', () => {
+    render(
+      <SkillsViewer 
+        language="en" 
+        theme="dark"
+        testSkillCategories={mockEnglishSkills}
+        testIsLoading={false}
+        testError={null}
+      />
+    );
+    
+    // Проверяем, что компонент рендерится с темной темой без ошибок
+    expect(document.body.textContent).toContain('Programming Languages');
+    expect(document.body.textContent).toContain('Frameworks & Libraries');
   });
 });

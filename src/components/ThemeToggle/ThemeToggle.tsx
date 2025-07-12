@@ -1,11 +1,9 @@
 import { FaSun, FaMoon } from 'react-icons/fa';
+import { useTheme } from '../../contexts/ThemeContext';
 
-interface ThemeToggleProps {
-  theme: 'light' | 'dark';
-  toggleTheme: () => void;
-}
-
-const ThemeToggle = ({ theme, toggleTheme }: ThemeToggleProps) => {
+const ThemeToggle = () => {
+  const { theme, toggleTheme } = useTheme();
+  
   return (
     <button
       onClick={toggleTheme}

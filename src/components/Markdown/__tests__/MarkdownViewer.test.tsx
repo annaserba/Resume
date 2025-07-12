@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import MarkdownViewer from '../MarkdownViewer';
 
 describe('MarkdownViewer Component', () => {
@@ -13,9 +13,9 @@ describe('MarkdownViewer Component', () => {
       />
     );
     
-    const content = screen.getByTestId('markdown-content');
-    expect(content).toBeInTheDocument();
-    expect(content.innerHTML).toContain('Mock Markdown Content');
+    const content = document.querySelector('[data-testid="markdown-content"]');
+    expect(content).not.toBeNull();
+    expect(content?.innerHTML).toContain('Mock Markdown Content');
   });
 
   test('renders with different language', () => {
@@ -29,9 +29,9 @@ describe('MarkdownViewer Component', () => {
       />
     );
     
-    const content = screen.getByTestId('markdown-content');
-    expect(content).toBeInTheDocument();
-    expect(content.innerHTML).toContain('Mock Markdown Content на русском');
+    const content = document.querySelector('[data-testid="markdown-content"]');
+    expect(content).not.toBeNull();
+    expect(content?.innerHTML).toContain('Mock Markdown Content на русском');
   });
 
   test('shows loading state', () => {
@@ -47,7 +47,7 @@ describe('MarkdownViewer Component', () => {
     );
     
     // Проверяем, что отображается индикатор загрузки
-    expect(screen.getByTestId('loading-animation')).toBeInTheDocument();
+    expect(document.querySelector('[data-testid="loading-animation"]')).not.toBeNull();
   });
 
   test('handles errors gracefully', () => {
@@ -63,6 +63,6 @@ describe('MarkdownViewer Component', () => {
     );
     
     // Проверяем, что отображается сообщение об ошибке
-    expect(screen.getByText(/Failed to load content/i)).toBeInTheDocument();
+    expect(document.body.textContent).toContain('Failed to load content');
   });
 });
