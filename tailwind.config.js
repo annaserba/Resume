@@ -1,9 +1,12 @@
+import typography from '@tailwindcss/typography';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -41,10 +44,29 @@ export default {
             },
           },
         },
+        dark: {
+          css: {
+            color: theme('colors.gray.100'),
+            h2: {
+              color: theme('colors.blue.300'),
+              fontWeight: '600',
+            },
+            h3: {
+              color: theme('colors.blue.200'),
+              fontWeight: '500',
+            },
+            a: {
+              color: theme('colors.blue.300'),
+              '&:hover': {
+                color: theme('colors.blue.200'),
+              },
+            },
+          },
+        },
       }),
     },
   },
   plugins: [
-    require('@tailwindcss/typography'),
+    typography,
   ],
 }

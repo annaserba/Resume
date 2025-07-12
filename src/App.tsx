@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import './styles.css';
 import Resume from './components/Resume';
+import { useTheme } from './hooks/useTheme';
 
 const App = () => {
   const [language, setLanguage] = useState('en');
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     // Получаем язык из URL параметров
@@ -53,7 +55,7 @@ const App = () => {
     updateUrlWithLanguage(newLanguage);
   };
 
-  return <Resume language={language} onLanguageChange={handleLanguageChange} />;
+  return <Resume language={language} onLanguageChange={handleLanguageChange} theme={theme} toggleTheme={toggleTheme} />;
 };
 
 export default App;

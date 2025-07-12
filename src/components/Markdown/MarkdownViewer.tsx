@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 interface MarkdownViewerProps {
   section: string;
   language: string;
+  theme?: 'light' | 'dark';
   // Тестовые пропсы
   testContent?: string;
   testIsLoading?: boolean;
@@ -12,6 +13,7 @@ interface MarkdownViewerProps {
 const MarkdownViewer: React.FC<MarkdownViewerProps> = ({ 
   section, 
   language, 
+  theme = 'light',
   testContent, 
   testIsLoading, 
   testError 
@@ -69,11 +71,10 @@ const MarkdownViewer: React.FC<MarkdownViewerProps> = ({
     );
   }
 
-  // Use dangerouslySetInnerHTML to render the markdown content
   return (
     <div 
-      className="markdown-content prose prose-blue max-w-none"
-      dangerouslySetInnerHTML={{ __html: content }}
+      className={`markdown-content prose prose-blue max-w-none ${theme === 'dark' ? 'dark' : ''}`} 
+      dangerouslySetInnerHTML={{ __html: content }} 
       data-testid="markdown-content"
     />
   );

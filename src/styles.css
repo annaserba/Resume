@@ -26,3 +26,32 @@
 .markdown-content a {
   @apply text-blue-600 hover:text-blue-800 underline;
 }
+
+/* Dark theme styles */
+.dark .markdown-content h2 {
+  @apply text-blue-300;
+}
+
+.dark .markdown-content h3 {
+  @apply text-blue-200;
+}
+
+.dark .markdown-content p {
+  @apply text-gray-100;
+}
+
+.dark .markdown-content ul {
+  @apply text-gray-100;
+}
+
+.dark .markdown-content li {
+  @apply text-gray-100;
+}
+
+.dark .markdown-content strong {
+  @apply text-white font-bold;
+}
+
+.dark .markdown-content a {
+  @apply text-blue-300 hover:text-blue-200;
+}

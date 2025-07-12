@@ -1,108 +1,71 @@
 ## Team Lead Front-end Developer
 **SuperJob | June 2021 - June 2025**
-***Implemented:***
 
-✓ Development of the core of the branding system on React + TypeScript
+***Situation:*** The company faced manual branding processes taking up to 2 weeks, requiring automation to improve efficiency.
 
-✓ Parser development for :
+***Task:*** Develop a system to automate parsing and branding tasks, reducing time and enhancing quality.
 
-✓ Automation for the parsing scenario (reduction from 2 weeks to 1 hour)
+***Action:***
 
-✓ Optimization of complex cases (from 3 weeks to 1.5 weeks)
+✓ Built the core system using React + TypeScript, including a parser for automation.
 
-✓ Adaptation of the system for mobile applications
+✓ Adapted the system for mobile applications.
 
-***Additional projects:***
+✓ Led a team of 12 developers, conducted code reviews, and mentored junior specialists.
 
-✓ Start service for students (React, Next.js, TypeScript)
+***Result:***
 
-✓ Enterprise UI Component Library
+✓ Reduced task completion time from 2 weeks to 1 hour.
 
-***Technologies:***
-✓ React.js, TypeScript
+✓ Achieved 90% test coverage for critical functionality.
 
-***The command role:***
+✓ Increased project implementation speed by 3x.
 
-✓ Technical Head of the branding department
+***Technologies:*** React.js, TypeScript, Jest, Cypress.
 
-✓ Code review and mentoring of junior developers
-
-✓ Coordination with a team of 12 front-end developers
-
-***Performance metrics:***
-
-✓ 90% coverage of the code with autotests of critical functionality
-
-✓ 70% reduction of routine tasks through automation
-
-✓ 3x increase in the speed of implementation of branding projects
 
 ## Senior Front-end Developer
 **Pluritech | February 2019 - May 2021**
 
-***Key achievements:***
+***Situation:*** The company needed to modernize its corporate dashboard and transition from legacy code.
 
-✓ Developed a corporate personal account in CMS using React.js
+***Task:*** Develop a new dashboard using React.js and Next.js, implement Git, and improve workflows.
 
-✓ Created a frontend application for Next from scratch.js with SSR rendering
+***Action:***
 
-✓ Implemented a project with Headless CMS (Stackblit), speeding up the content management process
+✓ Created a frontend application from scratch using Next.js with SSR.
 
-✓ Migrated the team to Git, implementing modern version control practices
+✓ Integrated Headless CMS (Stackbill) to streamline content management.
 
-✓ Carried out refactoring of the legacy code
+✓ Migrated the team to Git and introduced code review practices.
 
-***Technologies and tools:***
+***Result:***
 
-Basic: React.js, Next.js, JavaScript (ES6+)
+✓ Improved dashboard performance and usability.
 
-Stylization: SASS, LESS, Material-UI
+✓ Accelerated development processes with modern tools.
 
-Graphics: Canvas, SVG
-
-Tools: Webpack, Gulp, Jest, Git
-
-Methodologies: Agile, Code Review, Component Architecture
+***Technologies:*** React.js, Next.js, JavaScript (ES6+), Git.
 
 ## Full-stack developer
 **Ten Kites | June 2016 - January 2019**
 
-***Key achievements:***
+***Situation:*** Needed a high-traffic web app for the restaurant industry to help users with food allergies.
 
-✓ Developed a high-load web application for restaurant business, helping people with food allergies safely choose dishes
+***Task:*** Build a scalable app with microservices architecture and social media integration.
 
-✓ Implemented a microservice architecture for embedded solutions, improving system scalability
+***Action:***
 
-✓ Created a convenient employee account for restaurant staff using Angular.js and Knockout.js
+✓ Developed frontend using Angular.js and Knockout.js; backend with C# and PHP.
 
-✓ Set up integration with social networks (Facebook/Twitter), increasing user engagement
+✓ Integrated Facebook/Twitter APIs to boost user engagement.
 
-***Technologies and tools:***
+✓ Optimized performance and cross-browser compatibility.
 
-▸ Frontend: JavaScript, Angular.js, Knockout.js, LESS, Bootstrap
+***Result:***
 
-▸ Backend: C#, PHP, SQL
+✓ The app gained popularity among users with dietary restrictions.
 
-▸ Tools: Git, Webpack, Gulp, Figma
+✓ The system scaled effectively under high load.
 
-▸ Methodologies: Agile, Code Review, E2E-тестирование
-
-***Project features:***
-
-✓ Work in an international distributed team of 10 specialists
-
-✓ Ensuring the stability of a high-load system
-
-✓ Optimizing performance and cross-browser compatibility
-
-✓ Modernizing legacy code with the implementation of modern practices
-
-***Acquired experience:***
-
-✓ Full development cycle — from concept to industrial operation
-
-✓ Creating and maintaining complex distributed systems
-
-✓ Integration with external APIs and services
-
-✓ Development of autotests and maintaining code quality
+***Technologies:*** Angular.js, Knockout.js, C#, PHP, SQL, Git.
