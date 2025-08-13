@@ -3,7 +3,7 @@ import './ChatWidget.css';
 import useOpenAI from '../../hooks/useOpenAI';
 import useTranslation from '../../hooks/useTraslation';
 import useRateLimit from '../../hooks/useRateLimit';
-import { useTheme } from '../../contexts/ThemeContext';
+import { useTheme } from '../providers/ThemeProvider';
 
 interface Message {
   id: string;

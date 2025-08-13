@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+.astro/
+dist/
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Test files
+**/*.test.*
+**/__tests__/
+
+# PDF generation script (runs during build)
+src/scripts/generatePDF.tsx
+
+# Source maps
+*.map

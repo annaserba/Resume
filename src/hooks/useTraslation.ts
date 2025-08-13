@@ -1,20 +1,23 @@
 import { useEffect, useState } from "react";
-import enTranslation from "../locales/en/translation.json";
+import { getTranslationsSync } from "../utils/contentLoader";
 
 function useTranslation(language: string) {
-    const [t, setT] = useState(enTranslation);
-      useEffect(() => {
-        const fetchTranslation = async () => {
+    const [t, setT] = useState<Record<string, string>>({});
+    
+    useEffect(() => {
+        const loadTranslation = () => {
           try {
-            const response = await import(`@/locales/${language}/translation.json`);
-            const text = await response;
-            setT(text);
+            const translations = getTranslationsSync(language);
+            setT(translations);
           } catch (err) {
             console.error(`Error loading translation: ${err}`);
+            // Fallback к русскому языку
+            const fallbackTranslations = getTranslationsSync('ru');
+            setT(fallbackTranslations);
           }
         };
     
-        fetchTranslation();
+        loadTranslation();
       }, [language]);
     return { t, setT };
 }

@@ -6,9 +6,9 @@ import puppeteer from 'puppeteer';
 import { marked } from 'marked';
 import en from '../locales/en/translation.json';
 import { getPdfTemplate } from '../templates/pdfTemplate';
+import SkillsServerRenderer from '../components/Skills/SkillsServerRenderer';
 import { renderToString } from 'react-dom/server';
 import Contacts from '../components/Contacts/Contacts';
-import { SkillsServerRenderer } from '../components/Skills/';
 
 // Use require for importing binary files and JSON
 const require = createRequire(import.meta.url);
@@ -97,6 +97,11 @@ function getTranslation(language: string) {
   }
 }
 
+// Simple function to render contacts without React component
+function renderContacts(translations: Record<string, string>): string {
+  return renderToString(<Contacts translations={translations} color="dark" />);
+}
+
 // Function to read markdown files and combine them
 async function combineMarkdownFiles(language: string) {
   // Reordered sections with contacts right after name, skills moved to right side, and experience at the end
@@ -108,7 +113,7 @@ async function combineMarkdownFiles(language: string) {
   // Import translations from JSON files
   const translations = getTranslation(language);
  
-  const contactsHtml = renderToString(<Contacts color="dark" translations={translations} />);
+  const contactsHtml = renderContacts(translations);
   const oneColumnContent = renderingContent(sectionsLeft, translations, language);
   const twoColumnContent = renderingContent(sectionsRight, translations, language);
   const footerContent = renderingContent(sectionsFooter, translations, language);

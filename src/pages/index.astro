@@ -1,0 +1,20 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AppWrapper from '../components/AppWrapper';
+import { getTranslations } from '../utils/translations';
+
+const language =  'ru';
+const translations = await getTranslations(language);
+const apiKey = import.meta.env.OPENAI_API_KEY;
+const enableChatWidget = import.meta.env.ENABLE_CHAT_WIDGET === 'true';
+---
+
+<Layout title={translations.name + ' - ' + translations.about} language={language}>
+  <AppWrapper 
+    language={language}
+    translations={translations}
+    apiKey={apiKey}
+    enableChatWidget={enableChatWidget}
+    client:load
+  />
+</Layout>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Skills from './Skills';
+import { getContent } from '../../utils/contentLoader';
 
 interface SkillsViewerProps {
   language: string;
@@ -35,16 +36,18 @@ const SkillsViewer: React.FC<SkillsViewerProps> = ({
       return;
     }
     
-    const fetchSkills = async () => {
+    const loadSkills = () => {
       setIsLoading(true);
       try {
-        const response = await import(`@/content/${language}/skills.md`);
-        const text = response.html as string;
-        
-        // Парсинг markdown для извлечения категорий и навыков с уровнями
-        const categories = parseSkillsMarkdown(text);
-        setSkillCategories(categories);
-        setError(null);
+        const rawContent = getContent('skills', language);
+        if (rawContent) {
+          // Парсинг сырого markdown для извлечения категорий и навыков с уровнями
+          const categories = parseSkillsMarkdown(rawContent);
+          setSkillCategories(categories);
+          setError(null);
+        } else {
+          setError(`Skills content not found for ${language}`);
+        }
       } catch (err) {
         console.error(`Error loading skills: ${err}`);
         setError(`Failed to load skills content`);
@@ -53,58 +56,54 @@ const SkillsViewer: React.FC<SkillsViewerProps> = ({
       }
     };
 
-    fetchSkills();
+    loadSkills();
   }, [language, testSkillCategories, testIsLoading, testError]);
 
-  // Функция для парсинга markdown с навыками
-  const parseSkillsMarkdown = (html: string): SkillCategory[] => {
+  // Функция для парсинга markdown с навыками (упрощенная версия без SSG)
+  const parseSkillsMarkdown = (rawMarkdown: string): SkillCategory[] => {
     const categories: SkillCategory[] = [];
-
-    // Создаем временный div для парсинга HTML
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = html;
-
-    // Находим все заголовки h2 (категории навыков)
-    const h2Elements = tempDiv.querySelectorAll('h2');
+    const lines = rawMarkdown.split('\n');
     
-    h2Elements.forEach((h2) => {
-      const categoryName = h2.textContent?.trim() || '';
-      const category: SkillCategory = {
-        category: categoryName,
-        items: []
-      };
+    let currentCategory: SkillCategory | null = null;
+    
+    for (const line of lines) {
+      const trimmedLine = line.trim();
       
-      // Находим список ul, который следует за заголовком
-      let ulElement = h2.nextElementSibling;
-      while (ulElement && ulElement.tagName !== 'UL') {
-        ulElement = ulElement.nextElementSibling;
-      }
-      
-      if (ulElement) {
-        // Находим все элементы списка
-        const liElements = ulElement.querySelectorAll('li');
+      // Проверяем заголовки (## Категория)
+      if (trimmedLine.startsWith('## ')) {
+        // Сохраняем предыдущую категорию
+        if (currentCategory && currentCategory.items.length > 0) {
+          categories.push(currentCategory);
+        }
         
-        liElements.forEach((li) => {
-          const text = li.textContent?.trim() || '';
-          const [name, levelStr] = text.split(':');
-          
-          if (name && levelStr) {
-            const level = parseInt(levelStr, 10);
-            if (!isNaN(level) && level >= 1 && level <= 5) {
-              category.items.push({
-                name: name.trim(),
-                level
-              });
-            }
+        // Создаем новую категорию
+        currentCategory = {
+          category: trimmedLine.replace('## ', ''),
+          items: []
+        };
+      }
+      // Проверяем элементы списка (- Навык:Уровень)
+      else if (trimmedLine.startsWith('- ') && currentCategory) {
+        const skillText = trimmedLine.replace('- ', '');
+        const [name, levelStr] = skillText.split(':');
+        
+        if (name && levelStr) {
+          const level = parseInt(levelStr.trim(), 10);
+          if (!isNaN(level) && level >= 1 && level <= 5) {
+            currentCategory.items.push({
+              name: name.trim(),
+              level
+            });
           }
-        });
+        }
       }
-      
-      if (category.items.length > 0) {
-        categories.push(category);
-      }
-    });
-
+    }
+    
+    // Добавляем последнюю категорию
+    if (currentCategory && currentCategory.items.length > 0) {
+      categories.push(currentCategory);
+    }
+    
     return categories;
   };
 

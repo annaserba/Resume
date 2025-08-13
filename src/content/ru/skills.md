@@ -6,6 +6,7 @@
 ## Фреймворки и библиотеки
 - React / Angular:4
 - Next.js:4
+- Astro:4
 - Tailwind CSS:5
 
 ## Инструменты
