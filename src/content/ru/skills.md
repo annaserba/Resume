@@ -5,8 +5,7 @@
 
 ## Фреймворки и библиотеки
 - React / Angular:4
-- Next.js:4
-- Astro:4
+- Next.js / Astro:4
 - Tailwind CSS:5
 
 ## Инструменты
@@ -14,7 +13,16 @@
 - Webpack / Vite:4
 - Docker / CI/CD:3
 
+## Архитектура
+- FSD:4
+
 ## Тестирование
-- Jest:4
-- Cypress:4
-- Selenium:4
+- Jest / Cypress / Selenium:4
+
+## Quality Gates
+- SonarQube:4
+
+## Backend
+- Node.js / Express:3
+- C# / .NET:3
+
